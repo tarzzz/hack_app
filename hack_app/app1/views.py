@@ -7,13 +7,22 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-@csrf_exempt
 def homepage(request):
     if request.method == 'GET':
         form = VisaForm()
         return render_to_response('index.html', {'form':form},context_instance=RequestContext(request))
 
     if request.method == 'POST':
-        form = VisaForm(request.POST)
-
-        return HttpResponse(str(request.POST))
+        # save sent data.. and send the "complete table"
+        obj = VisaForm.objects.all()
+        # generate an html table from obj
+        response_str = '<table class="table table-striped"> '
+        response_str+= '''<thead>
+                            <tr>
+                             <th>Name</th>
+                             <th>Passport</th>
+                             <th>Date Of Birth</th>
+                             <th>Nationality</th>
+                             <th>Gender</th>
+                          </thead>'''
+        return HttpResponse(response_str)

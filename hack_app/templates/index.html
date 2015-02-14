@@ -1,35 +1,51 @@
+{% load bootstrap_toolkit %}
 <html>
   <head>
-    <script type='text/Javascript' src='/static/js/jquery.min.js'></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/ripples.min.css" rel="stylesheet">
-    <link href="/static/css/material-wfont.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Stalemate">
-    <link href="/static/css/style.css" rel="stylesheet">
-
-
+  <link rel="stylesheet" href="/static/css/jquery.min.css">
+  <script src="/static//js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
   </head>
 <body>
-<form class="form-horizontal">
-	{{ form }}
+<div id="subpart1">
+<h1> Visa Form </h1>
+<form action="." method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form layout="vertical" %}
+    <div class="form-actions">
+      <a id="submit-form" type="submit" class="btn btn-primary">Submit</a>
+    </div>
 </form>
+</div>
 
+<div id="subpart2">
 
+</div>
+</body>
 
+<script type='text/Javascript'>
 
+$('#submit-form').click(function() {
+  alert("Sending data..")
+  // create data object to be streamed to backend..
+  var data = {
+    "name": $("#id_name").val(),
+    "passport": $("#id_passport").val(),
+    "dob": $("#id_dob").val(),
+    "nationality": $("#id_nationality").val(),
+    "gender": $("#id_gender").val()
 
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  };
+  console.log(data);
+  $.ajax({
+    type: "POST",
+    url: ".",
+    data: data,
+    success: function(data) { alert('post succeeded'); alert(data); },
+  });
 
-<script src="/static/js/ripples.min.js"></script>
-<script src="/static/js/material.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $.material.init();
-    });
+});
 </script>
 
-</body>
 </html>
 
 
@@ -41,38 +57,6 @@
 
 
 
-<script type='text/Javascript'>
-
-$('#submit-form').click(function() { 
 
 
-alert("Clicked,  sending POST req to Url with data.."); 
-
-var data1 = {"field1":$("#id_field1").val() ,"field2":$("#id_field2").val() }
-
-//alert(data1);
-console.log(data1);
-
-
-
-$.ajax({
-  type: "POST",
-  url: ".",
-  data: data1,
-  success: function(data) { alert('post succeeded'); alert(data); },
-  });
-
-});
-</script>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<script src="static/js/ripples.min.js"></script>
-<script src="static/js/material.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $.material.init();
-    });
-</script>
-
-
+-->

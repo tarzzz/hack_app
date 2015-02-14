@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script type='text/Javascript' src='/static/js/jquery.min.js'></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/ripples.min.css" rel="stylesheet">
+    <link href="/static/css/material-wfont.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Stalemate">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+
+  </head>
+<body>
+<form class="form-horizontal">
+	{{ form }}
+</form>
+
+
+
+
+
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="/static/js/ripples.min.js"></script>
+<script src="/static/js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<script type='text/Javascript'>
+
+$('#submit-form').click(function() { 
+
+
+alert("Clicked,  sending POST req to Url with data.."); 
+
+var data1 = {"field1":$("#id_field1").val() ,"field2":$("#id_field2").val() }
+
+//alert(data1);
+console.log(data1);
+
+
+
+$.ajax({
+  type: "POST",
+  url: ".",
+  data: data1,
+  success: function(data) { alert('post succeeded'); alert(data); },
+  });
+
+});
+</script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="static/js/ripples.min.js"></script>
+<script src="static/js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+</script>
+
+

@@ -5,11 +5,11 @@ from django.forms import ModelForm
 CHOICES = ( ('F', 'F'), ('NA', 'NA'), ('M', 'M'))
 class Visa(models.Model):
     name = models.CharField(max_length=255)
-    passport = models.CharField()
+    passport = models.CharField(max_length=10)
     dob = models.DateField()
-    nationality = models.CharField()
+    nationality = models.CharField(max_length=10)
     gender = models.CharField(max_length=1, choices=CHOICES)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(auto_now=True)
 
 
 class VisaForm(ModelForm):

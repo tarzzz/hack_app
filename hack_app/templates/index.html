@@ -5,6 +5,7 @@
   <script src="/static/js/jquery.min.js"></script>
   <script src="/static/bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/js/loader.js"></script>
   </head>
 <body>
 <div id="subpart1">
@@ -19,7 +20,9 @@
 </div>
 
 <div id="subpart2">
-<div id="table_output">
+<div id="loaderImage" style="display:none;" ></div>
+<div id="table_output" style="height:10em; overlay:scroll-y;">
+
 </div>
 </div>
 </body>
@@ -28,13 +31,16 @@
 
 $('#submit-form').click(function() {
   alert("Sending data..")
+  $("#table_output").hide();
+  $("#loader").show();
   // create data object to be streamed to backend..
   var data = {
     "name": $("#id_name").val(),
     "passport": $("#id_passport").val(),
     "dob": $("#id_dob").val(),
     "nationality": $("#id_nationality").val(),
-    "gender": $("#id_gender").val()
+    "gender": $("#id_gender").val(),
+    "csrfmiddlewaretoken": $('input[name="csrfmiddlewaretoken"]').val()
 
   };
   console.log(data);
@@ -42,7 +48,15 @@ $('#submit-form').click(function() {
     type: "POST",
     url: ".",
     data: data,
-    success: function(data) { alert('post succeeded'); alert(data); },
+    success: function(data) {
+      alert('post succeeded');
+      $("#loader").hide();
+      $("#table_output").html(data);
+      $("#table_output").show();
+
+    },
+    failure: function(data) { alert('post failed'); alert(data); }
+
   });
 
 });

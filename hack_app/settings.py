@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hack_app',
+    'hack_app.app1',
     'bootstrap_toolkit',
 )
 

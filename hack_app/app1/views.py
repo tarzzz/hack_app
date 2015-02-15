@@ -47,7 +47,7 @@ def homepage(request):
             response_str+='</tbody></table>'
 
 
-        except Exception as e:
+        except Exception as e: # This exception is also displayed in template.
             return HttpResponse('Error: ' + str(e))
 
         """
